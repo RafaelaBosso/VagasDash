@@ -69,13 +69,16 @@ As datas serão armazenadas em formato padronizado `AAAA-MM-DD` quando represent
 
 ## 6. Status permitidos
 
-- Para analisar
+- "Para analisar
 - Candidatura enviada
-- Teste técnico
-- Entrevista
-- Oferta
-- Recusada
-- Encerrada
+- Teste técnico agendado
+- Teste técnico realizado
+- Entrevista agendada
+- Entrevista realizada
+- Oferta recebida
+- Encerrado/Não selecionado
+- Encerrado/Oferta recusada
+- Encerrado/Oferta aceita
 
 O MVP não exigirá que todas as candidaturas sigam uma sequência fixa de etapas.
 
