@@ -1,12 +1,8 @@
 # VagasDash — Planejamento do MVP
 
-> Nome provisório. O nome definitivo será escolhido posteriormente.
-
 ## 1. Visão geral
 
-O VagasDash é uma aplicação web para organizar candidaturas a vagas de estágio e emprego. A aplicação centraliza informações sobre empresas, cargos, etapas dos processos seletivos e prazos de acompanhamento.
-
-O projeto será desenvolvido como uma demonstração para portfólio, utilizando dados fictícios.
+O VagasDash é uma aplicação web para organizar candidaturas a vagas de estágio e emprego. Sua função é centralizar informações sobre empresas, cargos, etapas dos processos seletivos e prazos de acompanhamento.
 
 ## 2. Problema e público-alvo
 
@@ -213,7 +209,6 @@ A estrutura poderá ser ajustada à medida que o projeto evoluir.
 - O MVP será destinado a uma demonstração individual, sem autenticação.
 - Os alertas serão visuais e aparecerão quando a aplicação estiver aberta.
 - Não haverá envio automático de notificações.
-- A aplicação utilizará dados fictícios na demonstração pública.
 
 ## 15. Melhorias futuras possíveis
 
