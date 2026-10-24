@@ -17,18 +17,16 @@ O VagasDash está em sua fase inicial. As funcionalidades serão implementadas g
 
 ## Tecnologias
 
-- **Python** — linguagem de programação.
-- **Streamlit** — desenvolvimento da interface web.
+- **Python** - linguagem de programação.
+- **Streamlit** - desenvolvimento da interface web.
+- **SQLite** - sistema de gerenciamento de banco de dados.
 
 Outras tecnologias poderão ser adicionadas conforme o projeto evoluir.
 
 ## Funcionalidades
 
-### Implementadas
 - [x] Estrutura inicial da aplicação web.
 - [x] Configuração básica da página com Streamlit.
-
-### Planejadas
 - [ ] Cadastro, edição e exclusão de candidaturas.
 - [ ] Validação dos dados informados.
 - [ ] Armazenamento persistente das candidaturas com SQLite.
