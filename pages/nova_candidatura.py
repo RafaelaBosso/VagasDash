@@ -55,5 +55,14 @@ with st.form("nova_candidatura"):
         if not empresa.strip() or not cargo.strip() or not data_candidatura:
             st.error("Por favor, preencha todos os campos obrigatórios.")
         else:
-            # Aqui você pode adicionar a lógica para salvar os dados da candidatura em um banco de dados ou arquivo
+            # Converte as datas de DD/MM/YYYY para YYYY-MM-DD
+            data_candidatura = data_candidatura.strftime("%Y-%m-%d")
+            if prazo_acompanhamento:
+                prazo_acompanhamento = prazo_acompanhamento.strftime("%Y-%m-%d")
+
+            from database import adicionar_candidatura
+
+            # Adiciona a candidatura ao banco de dados
+            adicionar_candidatura(empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes)
+
             st.success(f"Candidatura para **{empresa}** no cargo de **{cargo}** adicionada com sucesso!")

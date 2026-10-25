@@ -2,10 +2,10 @@ import sqlite3
 from pathlib import Path
 from contextlib import closing
 
-def init_db():
-    diretorio_projeto = Path(__file__).resolve().parent
-    caminho_banco = diretorio_projeto / "vagasdash.db"
+diretorio_projeto = Path(__file__).resolve().parent
+caminho_banco = diretorio_projeto / "vagasdash.db"
 
+def init_db():
     # fecha a conexão
     with closing(sqlite3.connect(caminho_banco, autocommit=False)) as conexao:
         # fecha a transação
@@ -34,3 +34,11 @@ def init_db():
                 criada_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
         ''')
+
+def adicionar_candidatura(empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes):
+    with closing(sqlite3.connect(caminho_banco)) as conexao:
+        with conexao:
+            conexao.execute('''
+                INSERT INTO candidaturas (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes))
