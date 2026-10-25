@@ -4,6 +4,16 @@
 
 O VagasDash é uma aplicação web para organizar candidaturas a vagas de estágio e emprego. Sua função é centralizar informações sobre empresas, cargos, etapas dos processos seletivos e prazos de acompanhamento.
 
+### Como funcionará, em linhas gerais?
+
+1. A pessoa baixa o projeto e segue as instruções de instalação.
+2. Inicia a aplicação no terminal; a interface abre no navegador.
+3. Navega pelas páginas separadas usando o menu do Streamlit.
+4. Cadastra, consulta, filtra, edita e exclui as próprias candidaturas.
+5. Consulta no dashboard o resumo das candidaturas e os alertas visuais de acompanhamento.
+6. Exporta ou importa registros por arquivos CSV, conforme as regras definidas para esse recurso.
+7. Os registros ficam salvos em um banco SQLite local, sem depender de uma conta ou serviço on-line.
+
 ## 2. Problema e público-alvo
 
 ### Problema
@@ -18,14 +28,7 @@ Quem se candidata a várias vagas pode perder o controle das empresas, datas, et
 
 ## 3. Objetivos
 
-- Desenvolver uma aplicação web usando Python;
-- Praticar operações de cadastro, consulta, edição e exclusão;
-- Armazenar dados em um banco SQLite;
-- Implementar validações e regras de negócio;
-- Criar filtros e indicadores;
-- Importar e exportar dados CSV;
-- Escrever testes automatizados;
-- Documentar e publicar o projeto no GitHub.
+Construir uma ferramenta realmente utilizável, que permita registrar candidaturas, consultar e atualizar seus dados, acompanhar prazos e manter os registros salvos mesmo depois de fechar a aplicação. O projeto também serve como portfólio para demonstrar conhecimentos de Python, Streamlit, SQL, SQLite, Git e testes.
 
 ## 4. Escopo do MVP
 
@@ -69,7 +72,7 @@ As datas serão armazenadas em formato padronizado `AAAA-MM-DD` quando represent
 
 ## 6. Status permitidos
 
-- "Para analisar
+- Para analisar
 - Candidatura enviada
 - Teste técnico agendado
 - Teste técnico realizado
@@ -180,17 +183,16 @@ As versões e dependências exatas serão registradas durante a configuração d
 
 ```text
 VagasDash/
-├── app.py
-├── database.py
-├── services.py
-├── requirements.txt
-├── README.md
-├── MVP.md
+├── app.py                         # Dashboard / ponto de entrada
+├── database.py                    # Inicialização e operações SQLite
+├── pages/
+│   ├── candidaturas.py            # Listagem, filtros, edição e exclusão
+│   ├── nova_candidatura.py        # Formulário de cadastro
+│   └── operacoes_csv.py            # Operações CSV
 ├── .gitignore
-├── data/
-│   └── exemplo_candidaturas.csv
-└── tests/
-    └── test_services.py
+├── README.md                      # Apresentação, instalação e execução
+├── MVP.md                         # Este planejamento
+└── requirements.txt               # Dependências da versão final
 ```
 
 A estrutura poderá ser ajustada à medida que o projeto evoluir.
