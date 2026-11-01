@@ -1,4 +1,4 @@
-
+from constantes import STATUS_VALIDOS
 import streamlit as st
 
 st.set_page_config(
@@ -30,16 +30,7 @@ with st.form("nova_candidatura", clear_on_submit=True):
     # Campo: Status
     status = st.selectbox(
         "Status",
-        options=["Para analisar",
-                 "Candidatura enviada",
-                 "Teste técnico agendado",
-                 "Teste técnico realizado",
-                 "Entrevista agendada",
-                 "Entrevista realizada",
-                 "Oferta recebida",
-                 "Encerrado/Não selecionado",
-                 "Encerrado/Oferta recusada",
-                 "Encerrado/Oferta aceita"],
+        options=STATUS_VALIDOS,
     )
 
     # Campo: prazo para acompanhamento
@@ -55,10 +46,6 @@ with st.form("nova_candidatura", clear_on_submit=True):
         if not empresa.strip() or not cargo.strip() or not data_candidatura:
             st.error("Por favor, preencha todos os campos obrigatórios.")
         else:
-            # Converte as datas de DD/MM/YYYY para YYYY-MM-DD
-            data_candidatura = data_candidatura.strftime("%Y-%m-%d")
-            if prazo_acompanhamento:
-                prazo_acompanhamento = prazo_acompanhamento.strftime("%Y-%m-%d")
 
             from database import adicionar_candidatura
 

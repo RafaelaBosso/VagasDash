@@ -1,6 +1,9 @@
+from constantes import STATUS_VALIDOS
 import sqlite3
 from pathlib import Path
 from contextlib import closing
+
+_STATUS_SQL = ", ".join(f'"{status}"' for status in STATUS_VALIDOS)
 
 diretorio_projeto = Path(__file__).resolve().parent
 caminho_banco = diretorio_projeto / "vagasdash.db"
@@ -10,7 +13,7 @@ def init_db():
     with closing(sqlite3.connect(caminho_banco)) as conexao:
         # fecha a transação
         with conexao:
-            conexao.execute('''
+            conexao.execute(f'''
             CREATE TABLE IF NOT EXISTS candidaturas (
                 id INTEGER PRIMARY KEY,
                 empresa TEXT NOT NULL,
@@ -18,17 +21,7 @@ def init_db():
                 link_vaga TEXT,
                 data_candidatura TEXT NOT NULL
                     CHECK (date(data_candidatura) IS data_candidatura),
-                status TEXT NOT NULL CHECK (status IN (
-                    'Candidatura enviada',
-                    'Teste técnico agendado',
-                    'Teste técnico realizado',
-                    'Entrevista agendada',
-                    'Entrevista realizada',
-                    'Oferta recebida',
-                    'Encerrado/Não selecionado',
-                    'Encerrado/Oferta recusada',
-                    'Encerrado/Oferta aceita'
-                )),
+                status TEXT NOT NULL CHECK (status IN ({_STATUS_SQL})),
                 prazo_acompanhamento TEXT
                     CHECK (prazo_acompanhamento IS NULL OR date(prazo_acompanhamento) IS prazo_acompanhamento),
                 observacoes TEXT,
