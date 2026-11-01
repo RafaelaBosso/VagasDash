@@ -49,7 +49,17 @@ def listar_candidaturas():
         conexao.row_factory = sqlite3.Row
         
         lista_candidaturas = conexao.execute('''
-            SELECT * FROM candidaturas ORDER BY criada_em DESC
+            SELECT
+            id,
+            empresa,
+            cargo,
+            link_vaga, 
+            data_candidatura, 
+            status,
+            prazo_acompanhamento, 
+            observacoes,
+            datetime(criada_em, 'localtime') AS criada_em 
+            FROM candidaturas ORDER BY id DESC
         ''').fetchall()
         visualizar_candidaturas = []
 
