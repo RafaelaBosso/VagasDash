@@ -63,6 +63,14 @@ with st.form("nova_candidatura"):
             from database import adicionar_candidatura
 
             # Adiciona a candidatura ao banco de dados
-            adicionar_candidatura(empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes)
+            adicionar_candidatura(
+                empresa.strip(),
+                cargo.strip(),
+                (link_vaga or "").strip() or None,
+                data_candidatura.isoformat(),
+                status,
+                prazo_acompanhamento.isoformat() if prazo_acompanhamento else None,
+                (observacoes or "").strip() or None,
+)
 
             st.success(f"Candidatura para **{empresa}** no cargo de **{cargo}** adicionada com sucesso!")
