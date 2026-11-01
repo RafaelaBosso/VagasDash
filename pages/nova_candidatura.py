@@ -11,7 +11,7 @@ st.title("VagasDash - Nova Candidatura")
 st.write("Preencha o formulário abaixo para adicionar uma nova candidatura a uma vaga de emprego.")
 
 # Formulário para adicionar uma nova candidatura
-with st.form("nova_candidatura"):
+with st.form("nova_candidatura", clear_on_submit=True):
     st.subheader("Adicionar nova candidatura")
     st.write("Preencha os campos abaixo (campos com * são obrigatórios):")
 
