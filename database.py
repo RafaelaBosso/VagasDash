@@ -18,7 +18,6 @@ def init_db():
                 link_vaga TEXT,
                 data_candidatura TEXT NOT NULL,
                 status TEXT NOT NULL CHECK (status IN (
-                    'Para analisar',
                     'Candidatura enviada',
                     'Teste técnico agendado',
                     'Teste técnico realizado',

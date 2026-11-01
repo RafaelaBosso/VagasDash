@@ -27,7 +27,6 @@ def pagina_candidaturas():
                 "Link da Vaga": st.column_config.LinkColumn(),
                 "Data da Candidatura": st.column_config.DateColumn(format="localized"),
                 "Status": st.column_config.SelectboxColumn(options=[
-                    "Para analisar",
                     "Candidatura enviada",
                     "Teste técnico agendado",
                     "Teste técnico realizado",
