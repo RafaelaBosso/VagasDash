@@ -15,9 +15,9 @@ def pagina_candidaturas():
         df_candidaturas = pd.DataFrame(todas_candidaturas)
 
         # Converter as colunas que armazenam datas
-        df_candidaturas["Data da Candidatura"] = pd.to_datetime(df_candidaturas["Data da Candidatura"],errors='coerce').dt.date
-        df_candidaturas["Prazo de Acompanhamento"] = pd.to_datetime(df_candidaturas["Prazo de Acompanhamento"],errors='coerce').dt.date
-        df_candidaturas["Criada em"] = pd.to_datetime(df_candidaturas["Criada em"],errors='coerce')
+        df_candidaturas["Data da Candidatura"] = pd.to_datetime(df_candidaturas["Data da Candidatura"]).dt.date
+        df_candidaturas["Prazo de Acompanhamento"] = pd.to_datetime(df_candidaturas["Prazo de Acompanhamento"]).dt.date
+        df_candidaturas["Criada em"] = pd.to_datetime(df_candidaturas["Criada em"])
 
         st.dataframe(
             df_candidaturas, 

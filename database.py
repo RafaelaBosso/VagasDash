@@ -16,7 +16,8 @@ def init_db():
                 empresa TEXT NOT NULL,
                 cargo TEXT NOT NULL,
                 link_vaga TEXT,
-                data_candidatura TEXT NOT NULL,
+                data_candidatura TEXT NOT NULL
+                    CHECK (date(data_candidatura) IS data_candidatura),
                 status TEXT NOT NULL CHECK (status IN (
                     'Candidatura enviada',
                     'Teste técnico agendado',
@@ -28,7 +29,8 @@ def init_db():
                     'Encerrado/Oferta recusada',
                     'Encerrado/Oferta aceita'
                 )),
-                prazo_acompanhamento TEXT,
+                prazo_acompanhamento TEXT
+                    CHECK (prazo_acompanhamento IS NULL OR date(prazo_acompanhamento) IS prazo_acompanhamento),
                 observacoes TEXT,
                 criada_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
