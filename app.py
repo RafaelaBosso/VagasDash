@@ -9,7 +9,8 @@ st.set_page_config(
 def navegacao():
     pg = st.navigation([
         st.Page(pagina_inicial, title="Início", icon="🏠"),
-        st.Page("pages/nova_candidatura.py", title="Nova Candidatura", icon="👤")
+        st.Page("pages/nova_candidatura.py", title="Nova Candidatura", icon="👤"),
+        st.Page("pages/candidaturas.py", title="Candidaturas", icon="👥"),
     ], position="top")
 
     pg.run()
@@ -21,7 +22,7 @@ def pagina_inicial():
 def main():
     from database import init_db
     init_db()
-    
+
     navegacao()
 
 if __name__ == "__main__":

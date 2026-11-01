@@ -42,3 +42,31 @@ def adicionar_candidatura(empresa, cargo, link_vaga, data_candidatura, status, p
                 INSERT INTO candidaturas (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             ''', (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes))
+
+
+def listar_candidaturas():
+    with closing(sqlite3.connect(caminho_banco)) as conexao:
+
+        conexao.row_factory = sqlite3.Row
+        
+        lista_candidaturas = conexao.execute('''
+            SELECT * FROM candidaturas ORDER BY criada_em DESC
+        ''').fetchall()
+        visualizar_candidaturas = []
+
+    
+        for candidatura in lista_candidaturas:
+            uma_candidatura = {
+                "ID": candidatura["id"],
+                "Empresa": candidatura["empresa"],
+                "Cargo": candidatura["cargo"],
+                "Link da Vaga": candidatura["link_vaga"],
+                "Data da Candidatura": candidatura["data_candidatura"],
+                "Status": candidatura["status"],
+                "Prazo de Acompanhamento": candidatura["prazo_acompanhamento"],
+                "Observações": candidatura["observacoes"],
+                "Criada em": candidatura["criada_em"],
+            }
+            visualizar_candidaturas.append(uma_candidatura)
+
+    return visualizar_candidaturas
