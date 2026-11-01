@@ -26,6 +26,18 @@ def pagina_candidaturas():
                 "ID": st.column_config.NumberColumn(),
                 "Link da Vaga": st.column_config.LinkColumn(),
                 "Data da Candidatura": st.column_config.DateColumn(format="localized"),
+                "Status": st.column_config.SelectboxColumn(options=[
+                    "Para analisar",
+                    "Candidatura enviada",
+                    "Teste técnico agendado",
+                    "Teste técnico realizado",
+                    "Entrevista agendada",
+                    "Entrevista realizada",
+                    "Oferta recebida",
+                    "Encerrado/Não selecionado",
+                    "Encerrado/Oferta recusada",
+                    "Encerrado/Oferta aceita"
+                ]),
                 "Prazo de Acompanhamento": st.column_config.DateColumn(format="localized"),
                 "Criada em": st.column_config.DatetimeColumn(format="localized"),
             }, 
