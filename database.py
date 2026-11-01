@@ -7,7 +7,7 @@ caminho_banco = diretorio_projeto / "vagasdash.db"
 
 def init_db():
     # fecha a conexão
-    with closing(sqlite3.connect(caminho_banco, autocommit=False)) as conexao:
+    with closing(sqlite3.connect(caminho_banco)) as conexao:
         # fecha a transação
         with conexao:
             conexao.execute('''
