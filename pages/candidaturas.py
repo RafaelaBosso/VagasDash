@@ -4,13 +4,6 @@ import streamlit as st
 from constantes import STATUS_VALIDOS
 from database import listar_candidaturas
 
-st.set_page_config(
-    page_title="VagasDash - Candidaturas",
-    page_icon="👥",
-    layout="wide",
-)
-
-
 def pagina_candidaturas():
     todas_candidaturas = listar_candidaturas()
 
