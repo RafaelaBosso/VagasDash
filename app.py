@@ -2,10 +2,8 @@ import streamlit as st
 
 st.set_page_config(
     page_title="VagasDash",
-    page_icon="📋",
     layout="wide",
 )
-
 
 def navegacao():
     pg = st.navigation(
@@ -27,7 +25,7 @@ def pagina_inicial():
 
 def main():
     from database import init_db
-
+    
     init_db()
 
     navegacao()
