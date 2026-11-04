@@ -28,8 +28,8 @@ Outras tecnologias poderão ser adicionadas conforme o projeto evoluir.
 - [x] Estrutura inicial da aplicação web.
 - [x] Configuração básica da página com Streamlit.
 - [ ] Cadastro, edição e exclusão de candidaturas.
-- [ ] Validação dos dados informados.
-- [ ] Armazenamento persistente das candidaturas com SQLite.
+- [x] Validação dos dados informados.
+- [x] Armazenamento persistente das candidaturas com SQLite.
 - [ ] Filtros por empresa, cargo e status.
 - [ ] Dashboard com resumo das candidaturas.
 - [ ] Alertas visuais para prazos de acompanhamento.

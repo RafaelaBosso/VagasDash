@@ -1,19 +1,19 @@
-from constantes import STATUS_VALIDOS
 import sqlite3
-from pathlib import Path
 from contextlib import closing
+from pathlib import Path
+
+from constantes import STATUS_VALIDOS
 
 _STATUS_SQL = ", ".join(f'"{status}"' for status in STATUS_VALIDOS)
 
 diretorio_projeto = Path(__file__).resolve().parent
 caminho_banco = diretorio_projeto / "vagasdash.db"
 
+
 def init_db():
-    # fecha a conexão
-    with closing(sqlite3.connect(caminho_banco)) as conexao:
-        # fecha a transação
-        with conexao:
-            conexao.execute(f'''
+    # fecha a conexão e transação automaticamente ao final do bloco
+    with closing(sqlite3.connect(caminho_banco)) as conexao, conexao:
+            conexao.execute(f"""
             CREATE TABLE IF NOT EXISTS candidaturas (
                 id INTEGER PRIMARY KEY,
                 empresa TEXT NOT NULL,
@@ -27,23 +27,42 @@ def init_db():
                 observacoes TEXT,
                 criada_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
-        ''')
+        """)
 
-def adicionar_candidatura(empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes):
-    with closing(sqlite3.connect(caminho_banco)) as conexao:
-        with conexao:
-            conexao.execute('''
+
+def adicionar_candidatura(
+    empresa,
+    cargo,
+    link_vaga,
+    data_candidatura,
+    status,
+    prazo_acompanhamento,
+    observacoes,
+):
+    # fecha a conexão e transação automaticamente ao final do bloco
+    with closing(sqlite3.connect(caminho_banco)) as conexao, conexao:
+            conexao.execute(
+                """
                 INSERT INTO candidaturas (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes))
+            """,
+                (
+                    empresa,
+                    cargo,
+                    link_vaga,
+                    data_candidatura,
+                    status,
+                    prazo_acompanhamento,
+                    observacoes,
+                ),
+            )
 
 
 def listar_candidaturas():
     with closing(sqlite3.connect(caminho_banco)) as conexao:
-
         conexao.row_factory = sqlite3.Row
-        
-        lista_candidaturas = conexao.execute('''
+
+        lista_candidaturas = conexao.execute("""
             SELECT
             id,
             empresa,
@@ -55,10 +74,9 @@ def listar_candidaturas():
             observacoes,
             datetime(criada_em, 'localtime') AS criada_em 
             FROM candidaturas ORDER BY id DESC
-        ''').fetchall()
+        """).fetchall()
         visualizar_candidaturas = []
 
-    
         for candidatura in lista_candidaturas:
             uma_candidatura = {
                 "ID": candidatura["id"],
