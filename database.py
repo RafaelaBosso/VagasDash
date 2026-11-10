@@ -31,6 +31,7 @@ def init_db():
 
 
 def adicionar_candidatura(
+    *,
     empresa,
     cargo,
     link_vaga,
