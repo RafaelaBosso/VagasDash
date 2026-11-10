@@ -1,6 +1,8 @@
 import streamlit as st
 
 from constantes import STATUS_VALIDOS
+from database import adicionar_candidatura
+
 
 def formulario_nova_candidatura():
     # Formulário para adicionar uma nova candidatura
@@ -56,11 +58,13 @@ def formulario_nova_candidatura():
         enviar = st.form_submit_button("Adicionar candidatura")
 
     if enviar:
-        if not empresa_form.strip() or not cargo_form.strip() or not data_candidatura_form:
+        if (
+            not empresa_form.strip()
+            or not cargo_form.strip()
+            or not data_candidatura_form
+        ):
             st.error("Por favor, preencha todos os campos obrigatórios.")
         else:
-            from database import adicionar_candidatura
-
             # Adiciona a candidatura ao banco de dados
             adicionar_candidatura(
                 empresa=empresa_form.strip(),
@@ -68,13 +72,16 @@ def formulario_nova_candidatura():
                 link_vaga=(link_vaga_form or "").strip() or None,
                 data_candidatura=data_candidatura_form.isoformat(),
                 status=status_form,
-                prazo_acompanhamento=prazo_acompanhamento_form.isoformat() if prazo_acompanhamento_form else None,
+                prazo_acompanhamento=prazo_acompanhamento_form.isoformat()
+                if prazo_acompanhamento_form
+                else None,
                 observacoes=(observacoes_form or "").strip() or None,
-                )
+            )
 
             st.success(
                 f"Candidatura para **{empresa_form}** no cargo de **{cargo_form}** adicionada com sucesso!"
             )
+
 
 def main():
     st.title("VagasDash - Nova Candidatura")
@@ -83,6 +90,7 @@ def main():
     )
 
     formulario_nova_candidatura()
+
 
 if __name__ == "__main__":
     main()

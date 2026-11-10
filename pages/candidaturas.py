@@ -4,6 +4,7 @@ import streamlit as st
 from constantes import STATUS_VALIDOS
 from database import listar_candidaturas
 
+
 def pagina_candidaturas():
     todas_candidaturas = listar_candidaturas()
 
@@ -27,13 +28,18 @@ def pagina_candidaturas():
                 "empresa": st.column_config.TextColumn(label="Empresa"),
                 "cargo": st.column_config.TextColumn(label="Cargo"),
                 "link_vaga": st.column_config.LinkColumn(label="Link da Vaga"),
-                "data_candidatura": st.column_config.DateColumn(label="Data da Candidatura", format="localized"),
-                "status": st.column_config.SelectboxColumn(label="Status", options=STATUS_VALIDOS),
-                "prazo_acompanhamento": st.column_config.DateColumn(
-                    label="Prazo de Acompanhamento",
-                    format="localized"
+                "data_candidatura": st.column_config.DateColumn(
+                    label="Data da Candidatura", format="localized"
                 ),
-                "criada_em": st.column_config.DatetimeColumn(label="Criada em", format="localized"),
+                "status": st.column_config.SelectboxColumn(
+                    label="Status", options=STATUS_VALIDOS
+                ),
+                "prazo_acompanhamento": st.column_config.DateColumn(
+                    label="Prazo de Acompanhamento", format="localized"
+                ),
+                "criada_em": st.column_config.DatetimeColumn(
+                    label="Criada em", format="localized"
+                ),
                 "observacoes": st.column_config.TextColumn(label="Observações"),
             },
             alt="Tabela de Candidaturas",

@@ -13,7 +13,7 @@ caminho_banco = diretorio_projeto / "vagasdash.db"
 def init_db():
     # fecha a conexão e transação automaticamente ao final do bloco
     with closing(sqlite3.connect(caminho_banco)) as conexao, conexao:
-            conexao.execute(f"""
+        conexao.execute(f"""
             CREATE TABLE IF NOT EXISTS candidaturas (
                 id INTEGER PRIMARY KEY,
                 empresa TEXT NOT NULL,
@@ -42,21 +42,21 @@ def adicionar_candidatura(
 ):
     # fecha a conexão e transação automaticamente ao final do bloco
     with closing(sqlite3.connect(caminho_banco)) as conexao, conexao:
-            conexao.execute(
-                """
+        conexao.execute(
+            """
                 INSERT INTO candidaturas (empresa, cargo, link_vaga, data_candidatura, status, prazo_acompanhamento, observacoes)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
-                (
-                    empresa,
-                    cargo,
-                    link_vaga,
-                    data_candidatura,
-                    status,
-                    prazo_acompanhamento,
-                    observacoes,
-                ),
-            )
+            (
+                empresa,
+                cargo,
+                link_vaga,
+                data_candidatura,
+                status,
+                prazo_acompanhamento,
+                observacoes,
+            ),
+        )
 
 
 def listar_candidaturas():
@@ -76,11 +76,11 @@ def listar_candidaturas():
             datetime(criada_em, 'localtime') AS criada_em 
             FROM candidaturas ORDER BY id DESC
         """).fetchall()
-        
+
         candidaturas_salvas = []
 
         for candidatura in lista_candidaturas:
-             dict_candidatura = dict(candidatura)
-             candidaturas_salvas.append(dict_candidatura)
+            dict_candidatura = dict(candidatura)
+            candidaturas_salvas.append(dict_candidatura)
 
     return candidaturas_salvas
