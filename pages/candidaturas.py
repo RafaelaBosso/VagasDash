@@ -11,26 +11,30 @@ def pagina_candidaturas():
         df_candidaturas = pd.DataFrame(todas_candidaturas)
 
         # Converter as colunas que armazenam datas
-        df_candidaturas["Data da Candidatura"] = pd.to_datetime(
-            df_candidaturas["Data da Candidatura"]
+        df_candidaturas["data_candidatura"] = pd.to_datetime(
+            df_candidaturas["data_candidatura"]
         ).dt.date
-        df_candidaturas["Prazo de Acompanhamento"] = pd.to_datetime(
-            df_candidaturas["Prazo de Acompanhamento"]
+        df_candidaturas["prazo_acompanhamento"] = pd.to_datetime(
+            df_candidaturas["prazo_acompanhamento"]
         ).dt.date
-        df_candidaturas["Criada em"] = pd.to_datetime(df_candidaturas["Criada em"])
+        df_candidaturas["criada_em"] = pd.to_datetime(df_candidaturas["criada_em"])
 
         st.dataframe(
             df_candidaturas,
             hide_index=True,
             column_config={
-                "ID": st.column_config.NumberColumn(),
-                "Link da Vaga": st.column_config.LinkColumn(),
-                "Data da Candidatura": st.column_config.DateColumn(format="localized"),
-                "Status": st.column_config.SelectboxColumn(options=STATUS_VALIDOS),
-                "Prazo de Acompanhamento": st.column_config.DateColumn(
+                "id": st.column_config.NumberColumn(label="ID"),
+                "empresa": st.column_config.TextColumn(label="Empresa"),
+                "cargo": st.column_config.TextColumn(label="Cargo"),
+                "link_vaga": st.column_config.LinkColumn(label="Link da Vaga"),
+                "data_candidatura": st.column_config.DateColumn(label="Data da Candidatura", format="localized"),
+                "status": st.column_config.SelectboxColumn(label="Status", options=STATUS_VALIDOS),
+                "prazo_acompanhamento": st.column_config.DateColumn(
+                    label="Prazo de Acompanhamento",
                     format="localized"
                 ),
-                "Criada em": st.column_config.DatetimeColumn(format="localized"),
+                "criada_em": st.column_config.DatetimeColumn(label="Criada em", format="localized"),
+                "observacoes": st.column_config.TextColumn(label="Observações"),
             },
             alt="Tabela de Candidaturas",
         )

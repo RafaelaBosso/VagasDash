@@ -76,20 +76,11 @@ def listar_candidaturas():
             datetime(criada_em, 'localtime') AS criada_em 
             FROM candidaturas ORDER BY id DESC
         """).fetchall()
-        visualizar_candidaturas = []
+        
+        candidaturas_salvas = []
 
         for candidatura in lista_candidaturas:
-            uma_candidatura = {
-                "ID": candidatura["id"],
-                "Empresa": candidatura["empresa"],
-                "Cargo": candidatura["cargo"],
-                "Link da Vaga": candidatura["link_vaga"],
-                "Data da Candidatura": candidatura["data_candidatura"],
-                "Status": candidatura["status"],
-                "Prazo de Acompanhamento": candidatura["prazo_acompanhamento"],
-                "Observações": candidatura["observacoes"],
-                "Criada em": candidatura["criada_em"],
-            }
-            visualizar_candidaturas.append(uma_candidatura)
+             dict_candidatura = dict(candidatura)
+             candidaturas_salvas.append(dict_candidatura)
 
-    return visualizar_candidaturas
+    return candidaturas_salvas
